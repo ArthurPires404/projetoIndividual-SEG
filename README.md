@@ -34,4 +34,4 @@ Representar as interações de uma academia, permitindo a gestão de pessoas (al
 4. Inicie o módulo do **Apache** no painel do XAMPP.
 5. Acesse no navegador:
    ```text
-   http://localhost/V4 - projetoIndividual/index.php
+http://localhost/ArthurPires/V5%20-%20projetoIndividual%20-%20Arthur%20Pires/
