@@ -1,25 +1,23 @@
 <?php
 
-// Importação das classes na mesma pasta
-require_once 'Pessoa.php';
-require_once 'Aluno.php';
-require_once 'Professor.php';
-require_once 'Plano.php';
-require_once 'Matricula.php';
-require_once 'Exercicio.php';
-require_once 'Treino.php';
-require_once 'Pagamento.php';
+// Importação simples indicando a pasta src/
+require_once 'src/Pessoa.php';
+require_once 'src/Aluno.php';
+require_once 'src/Professor.php';
+require_once 'src/Plano.php';
+require_once 'src/Matricula.php';
+require_once 'src/Exercicio.php';
+require_once 'src/Treino.php';
+require_once 'src/Pagamento.php';
 
-// --------------------------------------------------
-// CRIAÇÃO DOS OBJETOS
-// --------------------------------------------------
-
+// Criando os objetos
 $aluno1 = new Aluno("João Silva", "111.111.111-11", "joao@email.com", "ALU001");
 $aluno2 = new Aluno("Maria Oliveira", "222.222.222-22", "maria@email.com", "ALU002");
 
 $professor1 = new Professor("Carlos Santos", "333.333.333-33", "carlos@email.com", "Musculação", "CREF001");
 $professor2 = new Professor("Ana Costa", "444.444.444-44", "ana@email.com", "Pilates", "CREF002");
 
+// Array com os objetos
 $pessoas = [$aluno1, $aluno2, $professor1, $professor2];
 
 ?>
@@ -122,7 +120,6 @@ $pessoas = [$aluno1, $aluno2, $professor1, $professor2];
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
         }
 
-        /* Indicador lateral colorido conforme o tipo de pessoa */
         .card.aluno::before {
             content: '';
             position: absolute;
@@ -195,12 +192,17 @@ $pessoas = [$aluno1, $aluno2, $professor1, $professor2];
             <h2 class="section-title">👥 Pessoas da Academia</h2>
 
             <div class="grid-cards">
-                <?php foreach ($pessoas as $pessoa): ?>
-                    <?php 
-                        // Identifica o tipo para personalizar as classes do card
-                        $tipo = ($pessoa instanceof Aluno) ? 'aluno' : 'professor';
-                        $rotulo = ($pessoa instanceof Aluno) ? 'Aluno' : 'Professor';
-                    ?>
+                <?php 
+                foreach ($pessoas as $pessoa) {
+                    // Lógica com if/else simples para identificar o tipo
+                    if ($pessoa instanceof Aluno) {
+                        $tipo = "aluno";
+                        $rotulo = "Aluno";
+                    } else {
+                        $tipo = "professor";
+                        $rotulo = "Professor";
+                    }
+                ?>
                     <div class="card <?php echo $tipo; ?>">
                         <span class="badge"><?php echo $rotulo; ?></span>
                         
@@ -209,11 +211,13 @@ $pessoas = [$aluno1, $aluno2, $professor1, $professor2];
                         </div>
 
                         <div class="card-details">
-                            <p><strong>Nome:</strong> <?php echo htmlspecialchars($pessoa->getNome()); ?></p>
-                            <p><strong>E-mail:</strong> <?php echo htmlspecialchars($pessoa->getEmail()); ?></p>
+                            <p><strong>Nome:</strong> <?php echo $pessoa->getNome(); ?></p>
+                            <p><strong>E-mail:</strong> <?php echo $pessoa->getEmail(); ?></p>
                         </div>
                     </div>
-                <?php endforeach; ?>
+                <?php 
+                } 
+                ?>
             </div>
         </main>
     </div>

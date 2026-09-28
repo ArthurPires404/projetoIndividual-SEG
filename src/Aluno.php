@@ -1,7 +1,5 @@
 <?php
 
-require_once 'Pessoa.php';
-
 class Aluno extends Pessoa {
     private string $matricula;
     private bool $ativo;
